@@ -1,21 +1,50 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@tailwind base; /* Importa os estilos base do Tailwind CSS */
+@tailwind components; /* Importa os componentes pré-estilizados do Tailwind CSS */
+@tailwind utilities; /* Importa as classes utilitárias do Tailwind CSS */
 
+/* Define variáveis CSS personalizadas */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: url('/snowflakes.svg'); /* URL da imagem de fundo (flocos de neve) */
+  --background-color: #000080; /* Cor de fundo principal (azul escuro) */
+  --foreground-color: #C0C0C0; /* Cor de primeiro plano (cinza claro) */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Estilos para o elemento body */
+body {
+  background-image: var(--background), linear-gradient(to bottom right, var(--background-color), var(--foreground-color)); /* Define uma imagem de fundo e um gradiente linear */
+  background-size: cover; /* Faz com que a imagem de fundo cubra todo o espaço disponível */
+  background-repeat: no-repeat; /* Impede que a imagem de fundo se repita */
+  color: #ffffff; /* Define a cor do texto como branco */
+  font-family: Inter, Arial, Helvetica, sans-serif; /* Define a família de fontes a ser utilizada */
+}
+
+/* Define que html e body devem ocupar 100% da altura da viewport */
+html, body {
+  height: 100%; 
+}
+
+/* Animação para efeito de digitação */
+@keyframes typing {
+  from {
+    width: 0; /* Começa com largura zero */
+  }
+
+  to {
+    width: 100%; /* Termina com largura total */
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Animação para efeito de piscar (como um cursor) */
+@keyframes blink {
+  50% {
+    border-color: transparent; /* Faz a borda ficar transparente na metade do tempo da animação */
+  }
+}
+
+/* Classe para aplicar o efeito de digitação em elementos */
+.typing {
+  overflow: hidden; /* Oculta o conteúdo que ultrapassa o limite do elemento */
+  white-space: nowrap; /* Impede quebras de linha no texto */
+  border-right: 2px solid #4ade80; /* Adiciona uma borda à direita como um cursor de texto */
+  animation: typing 4s steps(30, end), blink 0.5s step-end infinite; /* Aplica as animações de digitação e piscar ao mesmo tempo */
 }
